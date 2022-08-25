@@ -1,10 +1,9 @@
-use std::fmt::{Debug, Display, Write};
-
 use anyhow::Ok;
 use aws_sdk_ec2::{
     model::{Filter, Instance, InstanceState, InstanceStateName},
     Client,
 };
+use std::fmt::Display;
 
 pub struct Ec2Instance {
     pub id: String,

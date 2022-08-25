@@ -33,40 +33,40 @@ pub async fn run(args: Args) -> anyhow::Result<()> {
                 .ok_or_else(|| anyhow!("instance not found"))?;
             info!("your instance: {}", ec2_instance);
 
-            // stop your instance if running
-            if !ec2_instance.is_stopped() {
-                info!("stopping your instance, please be patient.");
-                instance::stop_instance(&client, &instance_id).await?;
-                loop {
-                    let instance = instance::get_instance(&client, &instance_id)
-                        .await?
-                        .unwrap();
-                    info!("checking your instance: {}", instance);
-                    if instance.is_stopped() {
-                        info!("your instance has been stopped");
-                        break;
-                    }
-                    tokio::time::sleep(Duration::from_secs(5)).await;
-                }
-            }
+            //     // stop your instance if running
+            //     if !ec2_instance.is_stopped() {
+            //         info!("stopping your instance, please be patient.");
+            //         instance::stop_instance(&client, &instance_id).await?;
+            //         loop {
+            //             let instance = instance::get_instance(&client, &instance_id)
+            //                 .await?
+            //                 .unwrap();
+            //             info!("checking your instance: {}", instance);
+            //             if instance.is_stopped() {
+            //                 info!("your instance has been stopped");
+            //                 break;
+            //             }
+            //             tokio::time::sleep(Duration::from_secs(5)).await;
+            //         }
+            //     }
 
-            // start your instance
-            info!("starting your instance, please be patient.");
-            instance::start_instance(&client, &instance_id).await?;
-            loop {
-                let instance = instance::get_instance(&client, &instance_id)
-                    .await?
-                    .unwrap();
-                info!("checking your instance: {}", instance);
-                if instance.is_running() {
-                    info!(
-                        "your instance has been started, the new ip is {}, enjoy!",
-                        instance.ipv4
-                    );
-                    break;
-                }
-                tokio::time::sleep(Duration::from_secs(5)).await;
-            }
+            //     // start your instance
+            //     info!("starting your instance, please be patient.");
+            //     instance::start_instance(&client, &instance_id).await?;
+            //     loop {
+            //         let instance = instance::get_instance(&client, &instance_id)
+            //             .await?
+            //             .unwrap();
+            //         info!("checking your instance: {}", instance);
+            //         if instance.is_running() {
+            //             info!(
+            //                 "your instance has been started, the new ip is {}, enjoy!",
+            //                 instance.ipv4
+            //             );
+            //             break;
+            //         }
+            //         tokio::time::sleep(Duration::from_secs(5)).await;
+            //     }
         }
     }
 
