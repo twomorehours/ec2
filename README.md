@@ -1,7 +1,7 @@
 # ec2 reboot helper
 
 ## Description
-ec2 reboot helper will stop your instance and start your instance to get an new ip which hasn't be blocked by GFW.
+ec2 reboot helper will stop your instance and start your instance to get an new ip which hasn't be blocked by The GFW.
 
 ## Prerequisite
 - make sure you have Rust&Cargo installed
